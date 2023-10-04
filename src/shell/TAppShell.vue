@@ -17,7 +17,9 @@
     <TMain>
       <TSideBar :active="navbar">
         <template #content>
-          <TButton v-for="(item, i) in menuModel" :key="i" :to="item.to" block class="mb-1"> <TIcon :name="item.icon" class="mr-2 fa-sm" solid />{{ item.text }} </TButton>
+          <TButton v-for="(item, i) in menuModel" :key="i" :to="item.to" block class="mb-1">
+            <TIcon :name="item.icon" class="mr-2 fa-sm" solid />{{ item.text }}
+          </TButton>
         </template>
         <template #footer>
           <TButton block class="text-center">Sair</TButton>
@@ -58,6 +60,7 @@ export default {
     menuModel: [
       { text: 'Home', to: '/', icon: 'fa-user' },
       { text: 'About', to: '/about', icon: 'fa-user' },
+      { text: 'Login', to: '/login', icon: 'fa-user' },
     ],
   }),
   methods: {

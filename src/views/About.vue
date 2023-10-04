@@ -1,5 +1,5 @@
 <template>
-  <TCrud :config="config"></TCrud>
+  <TCrud :config="config"> </TCrud>
 </template>
 
 <script>
@@ -12,8 +12,12 @@ export default {
     config: {
       head: 'Usuários',
       breadcrumb: [{ text: 'Home' }, { text: 'About' }, { text: 'Usuários' }],
-      route: '/users',
+      route: 'user',
     },
   }),
+  mounted() {
+    // const users = this.$crud.get('users')
+    // console.log(users)
+  },
 }
 </script>

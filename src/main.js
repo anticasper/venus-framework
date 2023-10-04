@@ -7,6 +7,8 @@ import './assets/fa/css/fontawesome.css'
 import './assets/fa/css/brands.css'
 import './assets/fa/css/solid.css'
 
+import crud from './plugins/crud'
+
 import router from './router'
 
-createApp(App).use(router).mount('#app')
+createApp(App).use(router).use(crud).mount('#app')

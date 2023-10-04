@@ -64,5 +64,16 @@ export default {
       { id: 8, name: 'Camila', level: 'Estagiário', lang: 'JS' },
     ],
   }),
+  methods: {
+    async start() {
+      if (this.config.route) {
+        const res = await this.$crud.get(this.config.route)
+        this.items = res.data
+      }
+    },
+  },
+  mounted() {
+    this.start()
+  },
 }
 </script>
