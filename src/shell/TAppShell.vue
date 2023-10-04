@@ -59,7 +59,8 @@ export default {
     navbar: true,
     menuModel: [
       { text: 'Home', to: '/', icon: 'fa-user' },
-      { text: 'About', to: '/about', icon: 'fa-user' },
+      { text: 'Usuários', to: '/usuarios', icon: 'fa-user' },
+      { text: 'Planos', to: '/plan', icon: 'fa-user' },
       { text: 'Login', to: '/login', icon: 'fa-user' },
     ],
   }),

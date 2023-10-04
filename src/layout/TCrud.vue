@@ -53,16 +53,7 @@ export default {
       { text: 'Linguagens', value: 'lang' },
       { text: 'Ações', value: 'action', classes: 'w-8 text-center' },
     ],
-    items: [
-      { id: 1, name: 'Diovanni', level: 'Senior', lang: 'JS' },
-      { id: 2, name: 'Nielsen', level: 'Pleno', lang: 'JS' },
-      { id: 3, name: 'Luigi', level: 'Junior', lang: 'JS' },
-      { id: 4, name: 'Jean', level: 'Pleno', lang: 'JS' },
-      { id: 5, name: 'Lucas', level: 'Junior', lang: 'JS' },
-      { id: 6, name: 'Willian', level: 'Trainee', lang: 'JS' },
-      { id: 7, name: 'Felipe', level: 'Trainee', lang: 'JS' },
-      { id: 8, name: 'Camila', level: 'Estagiário', lang: 'JS' },
-    ],
+    items: [],
   }),
   methods: {
     async start() {
