@@ -11,13 +11,10 @@ export default {
   data: () => ({
     config: {
       head: 'Planos',
-      breadcrumb: [{ text: 'Home' }, { text: 'About' }, { text: 'Planos' }],
+      breadcrumb: [{ text: 'Home' }, { text: 'Administração' }, { text: 'Planos' }],
       route: 'plan',
     },
   }),
-  mounted() {
-    // const users = this.$crud.get('users')
-    // console.log(users)
-  },
+  mounted() {},
 }
 </script>

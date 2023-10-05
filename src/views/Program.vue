@@ -10,9 +10,9 @@ export default {
   },
   data: () => ({
     config: {
-      head: 'Usuários',
-      breadcrumb: [{ text: 'Home' }, { text: 'Administração' }, { text: 'Usuários' }],
-      route: 'user',
+      head: 'Programas',
+      breadcrumb: [{ text: 'Home' }, { text: 'Administração' }, { text: 'Programas' }],
+      route: 'program',
     },
   }),
   mounted() {},

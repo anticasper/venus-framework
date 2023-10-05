@@ -12,8 +12,7 @@ const get = async (route, params = {}) => {
       return res.data
     })
     .catch((err) => {
-      console.error(err)
-      return []
+      return err
     })
 
   return result
@@ -31,7 +30,7 @@ const search = async (route, objectParams) => {
     })
     .catch((err) => {
       console.error(err)
-      return null
+      return err
     })
   return result
 }
@@ -81,7 +80,7 @@ const remove = async (route, id) => {
     })
     .catch((err) => {
       console.error(err)
-      return false
+      return err
     })
 
   return result
@@ -136,7 +135,7 @@ const insertFile = async (route, object) => {
     })
     .catch((err) => {
       console.error(err)
-      return false
+      return err
     })
 
   return result
@@ -176,7 +175,7 @@ const getFile = async (route, object, glosa) => {
     })
     .catch((err) => {
       console.error(err)
-      return []
+      return err
     })
 
   return result

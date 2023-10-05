@@ -1,6 +1,6 @@
 <template>
   <div class="border focus:border-indigo-800 hover:border-indigo-600 bg-white rounded-lg w-full flex overflow-hidden">
-    <input class="border-none focus:outline-none flex-grow p-1 m-1" v-model="raw" />
+    <input class="border-none focus:outline-none flex-grow p-1 m-1" v-model="raw" :type="password ? 'password' : 'input'" :placeholder="placeholder" />
   </div>
 </template>
 
@@ -12,6 +12,12 @@ export default {
   },
   props: {
     value: String,
+    placeholder: String,
+
+    password: {
+      type: Boolean,
+      default: false,
+    },
   },
   data: () => ({
     raw: null,

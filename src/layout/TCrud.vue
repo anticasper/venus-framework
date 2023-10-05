@@ -7,8 +7,8 @@
           <TBreadcrumb :list="config.breadcrumb" />
         </div>
         <div class="w-32 text-right">
-          <TButton>
-            <TIcon name="fa-plus fa-sm" class="mr-3" regular />
+          <TButton class="px-3" @click="add()">
+            <TIcon name="fa-plus fa-sm" regular />
             Adicionar
           </TButton>
         </div>
@@ -32,6 +32,8 @@ import TButton from '@/components/TButton'
 import TTable from '@/components/TTable'
 import TBreadcrumb from '@/components/TBreadcrumb'
 
+import { mapState } from 'vuex'
+
 export default {
   components: {
     TCard,
@@ -46,6 +48,9 @@ export default {
       default: null,
     },
   },
+  computed: {
+    ...mapState(['user']),
+  },
   data: () => ({
     headers: [
       { text: 'Nome', value: 'name' },
@@ -59,11 +64,23 @@ export default {
     async start() {
       if (this.config.route) {
         const res = await this.$crud.get(this.config.route)
+        if (!res) {
+          this.$router.push('/login')
+          this.$store.dispatch('setUserInfo', null)
+        }
         this.items = res.data
       }
     },
+    add() {
+      const route = this.$route.name
+      this.$router.push(`${route}/novo`)
+    },
   },
   mounted() {
+    if (!this.user) {
+      this.$router.push('/login')
+      this.$store.dispatch('setUserInfo', null)
+    }
     this.start()
   },
 }

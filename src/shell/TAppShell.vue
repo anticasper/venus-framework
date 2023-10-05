@@ -8,7 +8,6 @@
         <div class="flex-grow px-4">
           <img src="../assets/logo-venus.png" class="h-16" />
         </div>
-
         <div class="w-2/12 p-4 text-right">
           <slot name="header-right"></slot>
         </div>
@@ -17,12 +16,10 @@
     <TMain>
       <TSideBar :active="navbar">
         <template #content>
-          <TButton v-for="(item, i) in menuModel" :key="i" :to="item.to" block class="mb-1">
-            <TIcon :name="item.icon" class="mr-2 fa-sm" solid />{{ item.text }}
-          </TButton>
+          <TButton v-for="(item, i) in menuModel" :key="i" :to="item.to" block class="mb-1"> <TIcon :name="item.icon" class="mr-2 fa-sm" solid />{{ item.text }} </TButton>
         </template>
         <template #footer>
-          <TButton block class="text-center">Sair</TButton>
+          <TButton block class="text-center" @click="logoff()">Sair</TButton>
         </template>
       </TSideBar>
       <TContent class="p-4">
@@ -61,12 +58,17 @@ export default {
       { text: 'Home', to: '/', icon: 'fa-user' },
       { text: 'Usuários', to: '/usuarios', icon: 'fa-user' },
       { text: 'Planos', to: '/plan', icon: 'fa-user' },
-      { text: 'Login', to: '/login', icon: 'fa-user' },
+      { text: 'Grupos', to: '/group', icon: 'fa-user' },
+      { text: 'Programas', to: '/program', icon: 'fa-user' },
     ],
   }),
   methods: {
-    test() {
-      alert('Assim')
+    async logoff() {
+      const res = await this.$crud.insert('logout', this.object)
+      if (res) {
+        this.$router.push('/login')
+        this.$store.dispatch('setUserInfo', null)
+      }
     },
   },
 }

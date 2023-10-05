@@ -6,3 +6,58 @@
     --button-hover-color: #1e1b4b;
     --bg-card-default: #FFFFFF;
   }
+
+
+  @keyframes buzzer {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .buzzer {
+    animation: buzzer 0.5s infinite;
+    transform-origin: center;
+  }
+  
+  /* Estilo CSS para a animação de tremer horizontalmente */
+  @keyframes tremer {
+    0% {
+      transform: translateX(0);
+    }
+    20% {
+      transform: translateX(-5px);
+    }
+    40% {
+      transform: translateX(5px);
+    }
+    60% {
+      transform: translateX(-5px);
+    }
+    80% {
+      transform: translateX(5px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  /* Classe CSS para aplicar a animação */
+  .tremor {
+    animation: tremer 0.5s ease-in-out infinite;
+  }
+
+  .slide-out {
+    transform: translateX(-100%);
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  }
+  
+  .slide-in {
+    transform: translateX(0);
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  }

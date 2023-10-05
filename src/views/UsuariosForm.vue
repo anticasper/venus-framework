@@ -1,12 +1,12 @@
 <template>
-  <TCrud :config="config"> </TCrud>
+  <TForm :config="config"> </TForm>
 </template>
 
 <script>
-import TCrud from '@/layout/TCrud'
+import TForm from '@/layout/TForm'
 export default {
   components: {
-    TCrud,
+    TForm,
   },
   data: () => ({
     config: {
