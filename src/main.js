@@ -10,5 +10,6 @@ import './assets/fa/css/solid.css'
 import crud from './plugins/crud'
 
 import router from './router'
+import store from './store'
 
-createApp(App).use(router).use(crud).mount('#app')
+createApp(App).use(store).use(router).use(crud).mount('#app')
