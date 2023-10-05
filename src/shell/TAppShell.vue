@@ -16,7 +16,9 @@
     <TMain>
       <TSideBar :active="navbar">
         <template #content>
-          <TButton v-for="(item, i) in menuModel" :key="i" :to="item.to" block class="mb-1"> <TIcon :name="item.icon" class="mr-2 fa-sm" solid />{{ item.text }} </TButton>
+          <TButton v-for="(item, i) in menuModel" :key="i" :to="item.to" block class="mb-1">
+            <TIcon :name="item.icon" class="mr-2 fa-sm" solid />{{ item.text }}
+          </TButton>
         </template>
         <template #footer>
           <TButton block class="text-center" @click="logoff()">Sair</TButton>
@@ -60,6 +62,7 @@ export default {
       { text: 'Planos', to: '/plan', icon: 'fa-user' },
       { text: 'Grupos', to: '/group', icon: 'fa-user' },
       { text: 'Programas', to: '/program', icon: 'fa-user' },
+      { text: 'Formulário', to: '/form', icon: 'fa-user' },
     ],
   }),
   methods: {

@@ -15,9 +15,17 @@
       </div>
     </div>
     <div class="flex-grow">
-      <TTable :headers="headers" :items="items">
+      <TTable :headers="headers" :items="items" class="h-full">
         <template #item-action="item">
-          <TIcon name="fa-bars" color="black" regular button @click="item.id" />
+          <div class="exibe-menu">
+            <TIcon name="fa-bars" color="black" regular button @click="item.id" />
+            <div class="absolute right-8 sub-menu">
+              <TCard class="fh-full p-2 shadow-md w-20">
+                <TButton class="px-3 mb-2" @click="edit(item.id)" block> Editar </TButton>
+                <TButton class="px-3 mb-2" @click="remove(item.id)" block> Excluir </TButton>
+              </TCard>
+            </div>
+          </div>
         </template>
       </TTable>
     </div>
@@ -63,7 +71,15 @@ export default {
   methods: {
     async start() {
       if (this.config.route) {
-        const res = await this.$crud.get(this.config.route)
+        const params = {}
+
+        if (this.config.father) {
+          params[this.config.fatherField] = this.config.father
+        }
+
+        console.log(params)
+
+        const res = await this.$crud.get(this.config.route, params)
         if (!res) {
           this.$router.push('/login')
           this.$store.dispatch('setUserInfo', null)
@@ -72,8 +88,12 @@ export default {
       }
     },
     add() {
-      const route = this.$route.name
+      const route = this.$route.path
       this.$router.push(`${route}/novo`)
+    },
+    edit(id) {
+      const route = this.$route.path
+      this.$router.push(`${route}/edit/${id}`)
     },
   },
   mounted() {
@@ -85,3 +105,15 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.exibe-menu {
+  display: relative;
+}
+.exibe-menu:hover .sub-menu {
+  display: block;
+}
+.sub-menu {
+  display: none;
+}
+</style>

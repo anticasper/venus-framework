@@ -32,7 +32,7 @@ export default {
       const res = await this.$crud.insert('login', this.object)
       if (res.status === 200 && res.data) {
         this.$store.dispatch('setUserInfo', res.data)
-        this.$router.push('/')
+        this.$router.push('/form/1/fields')
       } else {
         this.buzz = true
         setTimeout(() => {

@@ -37,6 +37,28 @@ const routes = [
     name: 'Program',
     component: () => import(/* webpackChunkName: "about" */ '../views/Program.vue'),
   },
+  {
+    path: '/form',
+    name: 'Form',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Form.vue'),
+  },
+  {
+    path: '/form/novo',
+    name: 'Novo Form',
+    component: () => import(/* webpackChunkName: "about" */ '../views/FormForm.vue'),
+  },
+  {
+    path: '/form/edit/:id',
+    name: 'Update Form',
+    component: () => import(/* webpackChunkName: "about" */ '../views/FormForm.vue'),
+    props: true,
+  },
+  {
+    path: '/form/:idFather/fields',
+    name: 'Field',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Field.vue'),
+    props: true,
+  },
 ]
 
 const router = createRouter({

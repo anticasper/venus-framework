@@ -8,7 +8,6 @@ import './assets/fa/css/brands.css'
 import './assets/fa/css/solid.css'
 
 import crud from './plugins/crud'
-
 import router from './router'
 import store from './store'
 
