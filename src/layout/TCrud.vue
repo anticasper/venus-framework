@@ -20,7 +20,10 @@
           <div class="exibe-menu">
             <TIcon name="fa-bars" color="black" regular button @click="item.id" />
             <div class="absolute right-8 sub-menu">
-              <TCard class="fh-full p-2 shadow-md w-20">
+              <TCard class="fh-full p-2 shadow-md">
+                <div v-for="(sub, j) in config.children" :key="j">
+                  <TButton class="px-3 mb-2" @click="subRoute(item.id, sub)" block> {{ sub.name }} </TButton>
+                </div>
                 <TButton class="px-3 mb-2" @click="edit(item.id)" block> Editar </TButton>
                 <TButton class="px-3 mb-2" @click="remove(item.id)" block> Excluir </TButton>
               </TCard>
@@ -77,8 +80,6 @@ export default {
           params[this.config.fatherField] = this.config.father
         }
 
-        console.log(params)
-
         const res = await this.$crud.get(this.config.route, params)
         if (!res) {
           this.$router.push('/login')
@@ -94,6 +95,10 @@ export default {
     edit(id) {
       const route = this.$route.path
       this.$router.push(`${route}/edit/${id}`)
+    },
+    subRoute(id, sub) {
+      const route = this.$route.path
+      this.$router.push(`${route}/${id}/${sub.route}`)
     },
   },
   mounted() {

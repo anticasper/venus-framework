@@ -54,7 +54,7 @@ const routes = [
     props: true,
   },
   {
-    path: '/form/:idFather/fields',
+    path: '/form/:idFather/field',
     name: 'Field',
     component: () => import(/* webpackChunkName: "about" */ '../views/Field.vue'),
     props: true,

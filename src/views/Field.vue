@@ -11,7 +11,7 @@ export default {
   data: () => ({
     config: {
       head: 'Campos do Formulário',
-      breadcrumb: [{ text: 'Home' }, { text: 'Administração' }, { text: 'Formulários' }],
+      breadcrumb: [{ text: 'Home' }, { text: 'Administração' }, { text: 'Campos do Formulário' }],
       route: 'field',
       fatherField: 'idForm',
       father: null,

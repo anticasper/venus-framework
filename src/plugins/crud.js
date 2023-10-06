@@ -1,10 +1,10 @@
 import axios from 'axios'
 const { baseApiUrl } = require('./global')
 
+axios.defaults.withCredentials = true
+
 const get = async (route, params = {}) => {
   let url = `${baseApiUrl}/${route}`
-
-  axios.defaults.withCredentials = true
 
   const result = await axios
     .get(url, params)
@@ -21,8 +21,6 @@ const get = async (route, params = {}) => {
 const search = async (route, objectParams) => {
   let url = `${baseApiUrl}/${route}`
 
-  axios.defaults.withCredentials = true
-
   const result = await axios
     .get(url, { params: objectParams })
     .then((res) => {
@@ -36,8 +34,6 @@ const search = async (route, objectParams) => {
 }
 
 const insert = async (route, object) => {
-  axios.defaults.withCredentials = true
-
   const url = `${baseApiUrl}/${route}`
   const result = await axios
     .post(url, object)
@@ -45,7 +41,7 @@ const insert = async (route, object) => {
       return res
     })
     .catch((err) => {
-      console.log(err)
+      // console.log(err)
       return err
     })
 
@@ -53,8 +49,6 @@ const insert = async (route, object) => {
 }
 
 const update = async (route, id, object) => {
-  axios.defaults.withCredentials = true
-
   const url = `${baseApiUrl}/${route}/${id}`
   const result = await axios
     .patch(url, object)
@@ -70,8 +64,6 @@ const update = async (route, id, object) => {
 }
 
 const remove = async (route, id) => {
-  axios.defaults.withCredentials = true
-
   let url = `${baseApiUrl}/${route}/${id}`
   const result = await axios
     .delete(url)
@@ -87,8 +79,6 @@ const remove = async (route, id) => {
 }
 
 const validateCurrentPassword = async (route, object) => {
-  axios.defaults.withCredentials = true
-
   const url = `${baseApiUrl}/${route}`
   const result = await axios
     .post(url, object)
@@ -96,7 +86,7 @@ const validateCurrentPassword = async (route, object) => {
       return res
     })
     .catch((err) => {
-      console.log(err)
+      // console.log(err)
       return err
     })
 
@@ -104,8 +94,6 @@ const validateCurrentPassword = async (route, object) => {
 }
 
 const insertFile = async (route, object) => {
-  axios.defaults.withCredentials = true
-
   const url = `${baseApiUrl}/${route}`
 
   const formData = new FormData()
@@ -149,8 +137,6 @@ const getFile = async (route, object, glosa) => {
   } else {
     url = `${baseApiUrl}/${route}?tableName=${object.tableName}&startDate=${object.startDate}&endDate=${object.endDate}${object.service}`
   }
-
-  axios.defaults.withCredentials = true
 
   const result = await axios({
     url: url,

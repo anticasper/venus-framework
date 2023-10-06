@@ -78,9 +78,7 @@ export default {
       } else {
         await this.$crud.insert(this.config.route, this.object)
       }
-      if (res && res.response && res.response.status !== 200) {
-        console.log(res.response.data)
-      } else {
+      if (res && res.response && res.response.status === 200) {
         this.$router.go(-1)
       }
     },

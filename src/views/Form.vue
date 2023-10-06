@@ -13,7 +13,7 @@ export default {
       head: 'Formulários',
       breadcrumb: [{ text: 'Home' }, { text: 'Administração' }, { text: 'Formulários' }],
       route: 'form',
-      children: 'field',
+      children: [{ route: 'field', name: 'Campos' }],
     },
   }),
   mounted() {},
