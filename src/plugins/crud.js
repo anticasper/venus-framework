@@ -1,7 +1,17 @@
 import axios from 'axios'
 const { baseApiUrl } = require('./global')
+import store from '@/store'
 
 axios.defaults.withCredentials = true
+
+const sendError = () => {
+  store.dispatch('setToasted', {
+    active: true,
+    text: 'Tem algo errado aí fera.',
+    icon: 'fa-bomb',
+    color: '#ff0000',
+  })
+}
 
 const get = async (route, params = {}) => {
   let url = `${baseApiUrl}/${route}`
@@ -12,6 +22,7 @@ const get = async (route, params = {}) => {
       return res.data
     })
     .catch((err) => {
+      sendError()
       return err
     })
 
@@ -27,7 +38,7 @@ const search = async (route, objectParams) => {
       return res.data
     })
     .catch((err) => {
-      console.error(err)
+      sendError()
       return err
     })
   return result
@@ -41,7 +52,7 @@ const insert = async (route, object) => {
       return res
     })
     .catch((err) => {
-      // console.log(err)
+      sendError()
       return err
     })
 
@@ -56,7 +67,7 @@ const update = async (route, id, object) => {
       return res
     })
     .catch((err) => {
-      console.error(err)
+      sendError()
       return err
     })
 
@@ -67,11 +78,11 @@ const remove = async (route, id) => {
   let url = `${baseApiUrl}/${route}/${id}`
   const result = await axios
     .delete(url)
-    .then((res) => {
-      return res.data
+    .then(() => {
+      return true
     })
     .catch((err) => {
-      console.error(err)
+      sendError()
       return err
     })
 
@@ -86,7 +97,7 @@ const validateCurrentPassword = async (route, object) => {
       return res
     })
     .catch((err) => {
-      // console.log(err)
+      sendError()
       return err
     })
 
@@ -122,7 +133,7 @@ const insertFile = async (route, object) => {
       return res
     })
     .catch((err) => {
-      console.error(err)
+      sendError()
       return err
     })
 
@@ -160,7 +171,7 @@ const getFile = async (route, object, glosa) => {
       return res
     })
     .catch((err) => {
-      console.error(err)
+      sendError()
       return err
     })
 

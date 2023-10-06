@@ -9,8 +9,9 @@
       </template>
       <router-view />
     </TAppShell>
-
     <router-view v-if="!user" />
+
+    <TToast />
   </TApp>
 </template>
 

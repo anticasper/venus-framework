@@ -32,6 +32,7 @@
         </template>
       </TTable>
     </div>
+
     <div class="h-8">Paginação</div>
   </TCard>
 </template>
@@ -75,12 +76,10 @@ export default {
     async start() {
       if (this.config.route) {
         const params = {}
-
-        if (this.config.father) {
-          params[this.config.fatherField] = this.config.father
+        if (this.$route.params.idFather) {
+          params[this.config.fatherField] = this.$route.params.idFather
         }
-
-        const res = await this.$crud.get(this.config.route, params)
+        const res = await this.$crud.get(this.config.route, { params })
         if (!res) {
           this.$router.push('/login')
           this.$store.dispatch('setUserInfo', null)
@@ -99,6 +98,18 @@ export default {
     subRoute(id, sub) {
       const route = this.$route.path
       this.$router.push(`${route}/${id}/${sub.route}`)
+    },
+    async remove(id) {
+      const res = await this.$crud.remove(this.config.route, id)
+      if (res) {
+        await this.start()
+        this.$store.dispatch('setToasted', {
+          active: true,
+          text: 'Excluído com sucesso',
+          icon: 'fa-check-square',
+          color: '#14532d',
+        })
+      }
     },
   },
   mounted() {

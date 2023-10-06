@@ -68,17 +68,21 @@ export default {
     },
     async save() {
       let res = null
-      if (this.$route.params) {
+      if (this.$route.params.idFather) {
+        this.object.idFather = this.$route.params.idFather
+      }
+
+      if (this.$route.params.id) {
         delete this.object.id
         delete this.object.createdAt
         delete this.object.updatedAt
         delete this.object.deletedAt
 
-        await this.$crud.update(this.config.route, this.$route.params.id, this.object)
+        res = await this.$crud.update(this.config.route, this.$route.params.id, this.object)
       } else {
-        await this.$crud.insert(this.config.route, this.object)
+        res = await this.$crud.insert(this.config.route, this.object)
       }
-      if (res && res.response && res.response.status === 200) {
+      if (res && (res.status === 200 || res.status === 204)) {
         this.$router.go(-1)
       }
     },
