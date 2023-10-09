@@ -15,6 +15,10 @@ export default {
       route: 'field',
       fatherField: 'idForm',
       father: null,
+      headers: [
+        { text: 'ID', value: 'id', classes: 'w-8' },
+        { text: 'Nome', value: 'name' },
+      ],
     },
   }),
   mounted() {

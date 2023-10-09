@@ -16,9 +16,17 @@
     <TMain>
       <TSideBar :active="navbar">
         <template #content>
-          <TButton v-for="(item, i) in menuModel" :key="i" :to="item.to" block class="mb-1">
-            <TIcon :name="item.icon" class="mr-2 fa-sm" solid />{{ item.text }}
-          </TButton>
+          <div v-for="(menu, j) in menuModel" :key="j">
+            <TButton @click="menu.status = !menu.status" block class="mb-1 flex">
+              <div class="flex-grow">{{ menu.category }}</div>
+              <TIcon :name="menu.status ? 'fa-caret-up' : 'fa-caret-down'" class="w-4 mr-2 fa-sm" solid />
+            </TButton>
+            <Transition>
+              <div v-if="menu.status">
+                <TButton v-for="(item, i) in menu.menus" :key="i" :to="item.to" block class="mb-1"> <TIcon :name="item.icon" class="mr-2 fa-sm" solid />{{ item.text }} </TButton>
+              </div>
+            </Transition>
+          </div>
         </template>
         <template #footer>
           <TButton block class="text-center" @click="logoff()">Sair</TButton>
@@ -57,12 +65,30 @@ export default {
     var1: null,
     navbar: true,
     menuModel: [
-      { text: 'Home', to: '/', icon: 'fa-user' },
-      { text: 'Usuários', to: '/usuarios', icon: 'fa-user' },
-      { text: 'Planos', to: '/plan', icon: 'fa-user' },
-      { text: 'Grupos', to: '/group', icon: 'fa-user' },
-      { text: 'Programas', to: '/program', icon: 'fa-user' },
-      { text: 'Formulário', to: '/form', icon: 'fa-user' },
+      {
+        category: 'Guilda',
+        status: false,
+        menus: [
+          { text: 'Home', to: '/', icon: 'fa-user' },
+          { text: 'Usuários', to: '/usuarios', icon: 'fa-user' },
+          { text: 'Planos', to: '/plan', icon: 'fa-user' },
+          { text: 'Grupos', to: '/group', icon: 'fa-user' },
+          { text: 'Programas', to: '/program', icon: 'fa-user' },
+          { text: 'Formulário', to: '/form', icon: 'fa-user' },
+        ],
+      },
+      {
+        category: 'Fundação',
+        status: false,
+        menus: [
+          { text: 'Home', to: '/', icon: 'fa-user' },
+          { text: 'Usuários', to: '/usuarios', icon: 'fa-user' },
+          { text: 'Planos', to: '/plan', icon: 'fa-user' },
+          { text: 'Grupos', to: '/group', icon: 'fa-user' },
+          { text: 'Programas', to: '/program', icon: 'fa-user' },
+          { text: 'Formulário', to: '/form', icon: 'fa-user' },
+        ],
+      },
     ],
   }),
   methods: {

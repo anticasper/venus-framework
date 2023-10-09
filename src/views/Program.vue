@@ -13,6 +13,10 @@ export default {
       head: 'Programas',
       breadcrumb: [{ text: 'Home' }, { text: 'Administração' }, { text: 'Programas' }],
       route: 'program',
+      headers: [
+        { text: 'ID', value: 'id', classes: 'w-8' },
+        { text: 'Nome', value: 'name' },
+      ],
     },
   }),
   mounted() {},

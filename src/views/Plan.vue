@@ -13,6 +13,10 @@ export default {
       head: 'Planos',
       breadcrumb: [{ text: 'Home' }, { text: 'Administração' }, { text: 'Planos' }],
       route: 'plan',
+      headers: [
+        { text: 'ID', value: 'id', classes: 'w-8' },
+        { text: 'Nome', value: 'name' },
+      ],
     },
   }),
   mounted() {},

@@ -15,25 +15,27 @@
       </div>
     </div>
     <div class="flex-grow">
-      <TTable :headers="headers" :items="items" class="h-full">
-        <template #item-action="item">
-          <div class="exibe-menu">
-            <TIcon name="fa-bars" color="black" regular button @click="item.id" />
-            <div class="absolute right-8 sub-menu">
-              <TCard class="fh-full p-2 shadow-md">
-                <div v-for="(sub, j) in config.children" :key="j">
-                  <TButton class="px-3 mb-2" @click="subRoute(item.id, sub)" block> {{ sub.name }} </TButton>
-                </div>
-                <TButton class="px-3 mb-2" @click="edit(item.id)" block> Editar </TButton>
-                <TButton class="px-3 mb-2" @click="remove(item.id)" block> Excluir </TButton>
-              </TCard>
+      <Transition>
+        <TTable :headers="headers" :items="items" class="h-full" :loading="loading">
+          <template #item-action="item">
+            <div class="exibe-menu">
+              <TIcon name="fa-bars" color="black" regular button @click="item.id" />
+              <div class="absolute right-8 sub-menu">
+                <TCard class="fh-full p-2 shadow-md">
+                  <div v-for="(sub, j) in config.children" :key="j">
+                    <TButton class="px-3 mb-2" @click="subRoute(item.id, sub)" block> {{ sub.name }} </TButton>
+                  </div>
+                  <TButton class="px-3 mb-2" @click="edit(item.id)" block> Editar </TButton>
+                  <TButton class="px-3 mb-2" @click="remove(item.id)" block> Excluir </TButton>
+                </TCard>
+              </div>
             </div>
-          </div>
-        </template>
-      </TTable>
+          </template>
+        </TTable>
+      </Transition>
     </div>
     <div class="h-8 mt-2">
-      <TPagination v-model="page" :config="pageConfig" />
+      <TPagination v-model="page" :config="pageConfig" v-if="!loading" />
     </div>
   </TCard>
 </template>
@@ -53,15 +55,16 @@ export default {
   },
   data: () => ({
     headers: [
-      { text: 'Nome', value: 'name' },
-      { text: 'Nível', value: 'level' },
-      { text: 'Linguagens', value: 'lang' },
-      { text: 'Ações', value: 'action', classes: 'w-8 text-center' },
+      // { text: 'Nome', value: 'name' },
+      // { text: 'Nível', value: 'level' },
+      // { text: 'Linguagens', value: 'lang' },
+      // { text: 'Ações', value: 'action', classes: 'w-8 text-center' },
     ],
     items: [],
     pageConfig: {},
     perPage: 10,
     page: 1,
+    loading: false,
   }),
   methods: {
     async start() {
@@ -72,13 +75,16 @@ export default {
         }
         params.limit = this.perPage
         params.page = this.page
-
+        this.loading = true
         const res = await this.$crud.get(this.config.route, { params })
+        this.loading = false
         if (!res) {
           this.$router.push('/login')
           this.$store.dispatch('setUserInfo', null)
         }
         this.items = res.data
+        this.headers = this.config.headers || [{ text: 'ID', value: 'id', classes: 'text-left' }]
+        this.headers.push({ text: 'Ações', value: 'action', classes: 'w-8 text-center' })
         this.pageConfig = { total: res.total, actual: res.actualPage, perPage: this.perPage }
       }
     },

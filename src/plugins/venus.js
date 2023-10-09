@@ -10,6 +10,7 @@ import THeadBar from '@/components/THeadBar.vue'
 import TIcon from '@/components/TIcon.vue'
 import TInput from '@/components/TInput.vue'
 import TInputSearch from '@/components/TInputSearch.vue'
+import TLoadingBar from '@/components/TLoadingBar.vue'
 import TMain from '@/components/TMain.vue'
 import TPagination from '@/components/TPagination.vue'
 import TSideBar from '@/components/TSideBar.vue'
@@ -30,6 +31,7 @@ Vue.component('THeadBar',  THeadBar)
 Vue.component('TIcon',  TIcon)
 Vue.component('TInput',  TInput)
 Vue.component('TInputSearch',  TInputSearch)
+Vue.component('TLoadingBar',  TLoadingBar)
 Vue.component('TMain',  TMain)
 Vue.component('TPagination',  TPagination)
 Vue.component('TSideBar',  TSideBar)

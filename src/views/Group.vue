@@ -13,6 +13,10 @@ export default {
       head: 'Grupo',
       breadcrumb: [{ text: 'Home' }, { text: 'Administração' }, { text: 'Grupos' }],
       route: 'group',
+      headers: [
+        { text: 'ID', value: 'id', classes: 'w-8' },
+        { text: 'Nome', value: 'name' },
+      ],
     },
   }),
   mounted() {},
