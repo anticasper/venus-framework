@@ -32,28 +32,16 @@
         </template>
       </TTable>
     </div>
-
-    <div class="h-8">Paginação</div>
+    <div class="h-8 mt-2">
+      <TPagination v-model="page" :config="pageConfig" />
+    </div>
   </TCard>
 </template>
 
 <script>
-import TCard from '@/components/TCard'
-import TIcon from '@/components/TIcon'
-import TButton from '@/components/TButton'
-import TTable from '@/components/TTable'
-import TBreadcrumb from '@/components/TBreadcrumb'
-
 import { mapState } from 'vuex'
 
 export default {
-  components: {
-    TCard,
-    TIcon,
-    TTable,
-    TBreadcrumb,
-    TButton,
-  },
   props: {
     config: {
       type: Object,
@@ -71,6 +59,9 @@ export default {
       { text: 'Ações', value: 'action', classes: 'w-8 text-center' },
     ],
     items: [],
+    pageConfig: {},
+    perPage: 10,
+    page: 1,
   }),
   methods: {
     async start() {
@@ -79,12 +70,16 @@ export default {
         if (this.$route.params.idFather) {
           params[this.config.fatherField] = this.$route.params.idFather
         }
+        params.limit = this.perPage
+        params.page = this.page
+
         const res = await this.$crud.get(this.config.route, { params })
         if (!res) {
           this.$router.push('/login')
           this.$store.dispatch('setUserInfo', null)
         }
         this.items = res.data
+        this.pageConfig = { total: res.total, actual: res.actualPage, perPage: this.perPage }
       }
     },
     add() {
@@ -107,7 +102,7 @@ export default {
           active: true,
           text: 'Excluído com sucesso',
           icon: 'fa-check-square',
-          color: '#14532d',
+          color: '#14532do9',
         })
       }
     },
@@ -118,6 +113,11 @@ export default {
       this.$store.dispatch('setUserInfo', null)
     }
     this.start()
+  },
+  watch: {
+    page() {
+      this.start()
+    },
   },
 }
 </script>

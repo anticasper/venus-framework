@@ -32,5 +32,15 @@ export default {
   computed: {
     ...mapState(['user']),
   },
+  methods: {
+    start() {
+      if (!this.user) {
+        this.$router.push('/login')
+      }
+    },
+  },
+  mounted() {
+    this.start()
+  },
 }
 </script>

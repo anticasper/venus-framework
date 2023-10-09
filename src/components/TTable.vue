@@ -1,7 +1,7 @@
 <template>
-  <div class="relative overflow-x-auto">
+  <div class="relative overflow-x-auto rounded-lg border">
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-      <thead class="text-xs text-gray-800 uppercase bg-gray-200">
+      <thead class="text-xs text-gray-800 uppercase bg-gray-50 border-b">
         <tr>
           <th scope="col" class="px-6 py-3" v-for="(item, i) in headers" :key="i" :class="item.classes">
             {{ item.text }}
@@ -30,9 +30,6 @@ export default {
     items: Array,
   },
   watch: {
-    // raw() {
-    //   this.$emit('update:modelValue', this.raw)
-    // },
     items(newVal) {
       this.raw = newVal
     },

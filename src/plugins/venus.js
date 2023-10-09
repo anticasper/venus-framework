@@ -11,6 +11,7 @@ import TIcon from '@/components/TIcon.vue'
 import TInput from '@/components/TInput.vue'
 import TInputSearch from '@/components/TInputSearch.vue'
 import TMain from '@/components/TMain.vue'
+import TPagination from '@/components/TPagination.vue'
 import TSideBar from '@/components/TSideBar.vue'
 import TTable from '@/components/TTable.vue'
 import TToast from '@/components/TToast.vue'
@@ -30,6 +31,7 @@ Vue.component('TIcon',  TIcon)
 Vue.component('TInput',  TInput)
 Vue.component('TInputSearch',  TInputSearch)
 Vue.component('TMain',  TMain)
+Vue.component('TPagination',  TPagination)
 Vue.component('TSideBar',  TSideBar)
 Vue.component('TTable',  TTable)
 Vue.component('TToast',  TToast)
