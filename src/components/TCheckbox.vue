@@ -27,7 +27,11 @@ export default {
   }),
   watch: {
     raw() {
-      this.$emit('update:modelValue', this.raw)
+      if (this.raw) {
+        this.$emit('update:modelValue', 1)
+      } else {
+        this.$emit('update:modelValue', 0)
+      }
     },
     modelValue(newVal) {
       this.raw = newVal

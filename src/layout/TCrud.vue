@@ -54,12 +54,7 @@ export default {
     ...mapState(['user']),
   },
   data: () => ({
-    headers: [
-      // { text: 'Nome', value: 'name' },
-      // { text: 'Nível', value: 'level' },
-      // { text: 'Linguagens', value: 'lang' },
-      // { text: 'Ações', value: 'action', classes: 'w-8 text-center' },
-    ],
+    headers: [],
     items: [],
     pageConfig: {},
     perPage: 10,
