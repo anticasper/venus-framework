@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <TCard class="h-full p-4" v-for="(item, i) in form" :key="i">
+  <TCard class="flex flex-col h-full p-4 shadow-md">
+    <TLoadingBar v-if="loading" />
+    <div v-for="(item, i) in form" :key="i">
       <h1 class="text-2xl ml-1">{{ item.name }}</h1>
+      <TBreadcrumb :list="config.breadcrumb" class="my-4" />
       <div class="flex flex-wrap border-t border-b py-4 my-4">
         <div v-for="(field, j) in item.children" :key="j" :class="field.classes + ' p-1'">
           <div class="mb-2 ml-2">
@@ -9,7 +11,8 @@
           </div>
           <TInput v-model="object[field.name]" :placeholder="field.placeholder" v-if="field.type === 1" />
           <TInput v-model="object[field.name]" :placeholder="field.placeholder" password v-if="field.type === 2" />
-          <TCheckbox v-model="object[field.name]" :placeholder="field.placeholder" password v-if="field.type === 3" />
+          <TCheckbox v-model="object[field.name]" :placeholder="field.placeholder" v-if="field.type === 3" />
+          <TSelect v-model="object[field.name]" :placeholder="field.placeholder" :items="field.database" v-if="field.type === 4" />
         </div>
       </div>
       <div>
@@ -19,26 +22,14 @@
         </TButton>
         <TButton @click="back()" class="px-2 ml-2"> Voltar </TButton>
       </div>
-    </TCard>
-  </div>
+    </div>
+  </TCard>
 </template>
 
 <script>
-import TCard from '@/components/TCard'
-import TInput from '@/components/TInput'
-import TIcon from '@/components/TIcon'
-import TCheckbox from '@/components/TCheckbox'
-import TButton from '@/components/TButton'
 import { mapState } from 'vuex'
 
 export default {
-  components: {
-    TCard,
-    TInput,
-    TIcon,
-    TCheckbox,
-    TButton,
-  },
   computed: {
     ...mapState(['user']),
   },
@@ -46,13 +37,23 @@ export default {
     config: Object,
   },
   data: () => ({
+    loading: false,
     form: [],
     object: {},
+    // items: ['a', 'b', 'c'],
+    items: [
+      { value: 1, text: 'Nome' },
+      { value: 2, text: 'CPF' },
+      { value: 3, text: 'SEXO' },
+    ],
+    test: null,
   }),
   methods: {
     async start() {
       if (this.config.route) {
+        this.loading = true
         const res = await this.$crud.get('form', { params: { route: this.config.route } })
+        this.loading = false
         if (!res) {
           this.$router.push('/login')
           this.$store.dispatch('setUserInfo', null)

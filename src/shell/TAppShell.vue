@@ -29,7 +29,7 @@
           </div>
         </template>
         <template #footer>
-          <TButton block class="text-center" @click="logoff()">Sair</TButton>
+          <TButton block class="text-center" @click="logoff()"> Sair <TIcon name="fa-right-from-bracket" class="ml-2 fa-sm" solid /></TButton>
         </template>
       </TSideBar>
       <TContent class="p-4">
@@ -81,12 +81,11 @@ export default {
         category: 'Fundação',
         status: false,
         menus: [
-          { text: 'Home', to: '/', icon: 'fa-user' },
           { text: 'Usuários', to: '/usuarios', icon: 'fa-user' },
-          { text: 'Planos', to: '/plan', icon: 'fa-user' },
-          { text: 'Grupos', to: '/group', icon: 'fa-user' },
-          { text: 'Programas', to: '/program', icon: 'fa-user' },
-          { text: 'Formulário', to: '/form', icon: 'fa-user' },
+          { text: 'Planos', to: '/plan', icon: 'fa-money-bill' },
+          { text: 'Grupos', to: '/group', icon: 'fa-people-group' },
+          { text: 'Programas', to: '/program', icon: 'fa-computer' },
+          { text: 'Formulário', to: '/form', icon: 'fa-table-list' },
         ],
       },
     ],

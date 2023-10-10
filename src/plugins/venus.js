@@ -13,6 +13,7 @@ import TInputSearch from '@/components/TInputSearch.vue'
 import TLoadingBar from '@/components/TLoadingBar.vue'
 import TMain from '@/components/TMain.vue'
 import TPagination from '@/components/TPagination.vue'
+import TSelect from '@/components/TSelect.vue'
 import TSideBar from '@/components/TSideBar.vue'
 import TTable from '@/components/TTable.vue'
 import TToast from '@/components/TToast.vue'
@@ -34,6 +35,7 @@ Vue.component('TInputSearch',  TInputSearch)
 Vue.component('TLoadingBar',  TLoadingBar)
 Vue.component('TMain',  TMain)
 Vue.component('TPagination',  TPagination)
+Vue.component('TSelect',  TSelect)
 Vue.component('TSideBar',  TSideBar)
 Vue.component('TTable',  TTable)
 Vue.component('TToast',  TToast)

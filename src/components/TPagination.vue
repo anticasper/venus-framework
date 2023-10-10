@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-end">
+  <div class="flex justify-end text-sm">
     <div class="border rounded-lg py-2 flex mr-2" v-if="page > 1 || page < raw.total / raw.perPage">
       <div class="px-2" v-if="page > 1"><TIcon solid name="fa-angle-left" button @click="previousPage()" /></div>
       <div class="px-2" v-if="page < raw.total / raw.perPage">

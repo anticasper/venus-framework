@@ -7,7 +7,7 @@
 <script>
 export default {
   data: () => ({
-    classes: ['bg-white', 'w-full', 'h-16', 'shadow-sm'],
+    classes: ['bg-white', 'w-full', 'h-16', 'shadow-md'],
   }),
 }
 </script>

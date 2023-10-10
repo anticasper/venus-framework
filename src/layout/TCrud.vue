@@ -1,10 +1,10 @@
 <template>
-  <TCard class="flex flex-col h-full p-4">
+  <TCard class="flex flex-col h-full p-4 shadow-md">
     <div class="h-24">
       <div class="flex content-center items-center">
         <div class="flex-grow">
           <p class="text-2xl">{{ config.head }}</p>
-          <TBreadcrumb :list="config.breadcrumb" />
+          <TBreadcrumb :list="config.breadcrumb" class="my-4" />
         </div>
         <div class="w-32 text-right">
           <TButton class="px-3" @click="add()">
@@ -73,13 +73,20 @@ export default {
         this.loading = true
         const res = await this.$crud.get(this.config.route, { params })
         this.loading = false
-        if (!res) {
+        if (!res || (res.response && res.response.status > 400)) {
           this.$router.push('/login')
           this.$store.dispatch('setUserInfo', null)
         }
         this.items = res.data
+        this.headers = []
         this.headers = this.config.headers || [{ text: 'ID', value: 'id', classes: 'text-left' }]
-        this.headers.push({ text: 'Ações', value: 'action', classes: 'w-8 text-center' })
+        if (
+          !this.headers.find((el) => {
+            return el.value === 'action'
+          })
+        ) {
+          this.headers.push({ text: 'Ações', value: 'action', classes: 'w-8 text-center' })
+        }
         this.pageConfig = { total: res.total, actual: res.actualPage, perPage: this.perPage }
       }
     },

@@ -1,5 +1,5 @@
 <template>
-  <nav class="flex my-4" aria-label="Breadcrumb">
+  <nav class="flex" aria-label="Breadcrumb">
     <ol class="inline-flex content-center items-center space-x-1 md:space-x-3 text-gray-400 text-sm">
       <li class="inline-flex content-center items-center" v-for="(item, i) in list" :key="i">
         <TIcon :name="item.icon" solid class="fa-sm" v-if="item.icon"></TIcon>

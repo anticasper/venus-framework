@@ -35,7 +35,13 @@ export default {
   methods: {
     start() {
       if (!this.user) {
-        this.$router.push('/login')
+        const logged = this.$crud.get('me')
+        if (logged) {
+          this.$store.dispatch('setUserInfo', logged)
+          this.$router.push('/')
+        } else {
+          this.$router.push('/login')
+        }
       }
     },
   },
