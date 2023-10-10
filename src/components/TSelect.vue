@@ -1,11 +1,22 @@
 <template>
-  <div class="border focus:border-indigo-800 hover:border-indigo-600 bg-white rounded-lg w-full flex relative">
-    <div class="border-none focus:outline-none flex-grow p-1 m-1 cursor-pointer" @click="open = !open" :placeholder="placeholder">
-      {{ rawText ? rawText : placeholder }}
+  <div class="border focus:border-indigo-800 hover:border-indigo-600 bg-white rounded-lg w-full relative">
+    <div class="border-none focus:outline-none w-full p-1 m-1 flex">
+      <div class="flex-grow cursor-pointer" cursor-pointer @click="open = !open">
+        {{ rawText ? rawText : placeholder }}
+      </div>
+      <div class="px-2">
+        <TIcon :name="[{ 'fa-angles-down': !open }, { 'fa-angles-up': open }, 'fa-sm']" regular @click="open = !open" />
+        <TIcon name="fa-user fa-xmark" v-if="raw" @click="clear" button regular />
+      </div>
     </div>
     <Transition>
-      <TCard class="w-full shadow-md absolute mt-2 top-full" v-if="open">
-        <div v-for="(item, i) in items" :key="i" class="hover:bg-gray-50 border-b p-2 cursor-pointer" @click="setValue(item)">
+      <TCard class="w-full shadow-md absolute mt-1 top-full" v-if="open">
+        <div
+          v-for="(item, i) in items"
+          :key="i"
+          class="hover:bg-gray-50 border-b p-2 cursor-pointer"
+          @click="setValue(item)"
+        >
           <span v-if="typeof item === 'object' && item !== null">
             {{ getText(item) }}
           </span>
@@ -67,9 +78,16 @@ export default {
         return item
       }
     },
+    clear() {
+      this.raw = null
+      this.rawText = this.placeholder
+    },
   },
   mounted() {
-    this.raw = this.modelValue
+    const started = this.items.find((el) => {
+      return el[this.itemValue] === this.modelValue
+    })
+    this.setValue(started)
   },
 }
 </script>

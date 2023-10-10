@@ -6,7 +6,7 @@
           <TIcon name="fa-bars" color="black" regular button @click="navbar = !navbar" />
         </div>
         <div class="flex-grow px-4">
-          <img src="../assets/logo-venus.png" class="h-16" />
+          <img src="@/assets/logo-venus.png" class="h-16" />
         </div>
         <div class="w-2/12 p-4 text-right">
           <slot name="header-right"></slot>
@@ -23,13 +23,17 @@
             </TButton>
             <Transition>
               <div v-if="menu.status">
-                <TButton v-for="(item, i) in menu.menus" :key="i" :to="item.to" block class="mb-1"> <TIcon :name="item.icon" class="mr-2 fa-sm" solid />{{ item.text }} </TButton>
+                <TButton v-for="(item, i) in menu.menus" :key="i" :to="item.to" block class="mb-1">
+                  <TIcon :name="item.icon" class="mr-2 fa-sm" solid />{{ item.text }}
+                </TButton>
               </div>
             </Transition>
           </div>
         </template>
         <template #footer>
-          <TButton block class="text-center" @click="logoff()"> Sair <TIcon name="fa-right-from-bracket" class="ml-2 fa-sm" solid /></TButton>
+          <TButton block class="text-center" @click="logoff()">
+            Sair <TIcon name="fa-right-from-bracket" class="ml-2 fa-sm" solid
+          /></TButton>
         </template>
       </TSideBar>
       <TContent class="p-4">

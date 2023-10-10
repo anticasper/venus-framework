@@ -2,8 +2,23 @@
   <TCard class="flex flex-col h-full p-4 shadow-md">
     <TLoadingBar v-if="loading" />
     <div v-for="(item, i) in form" :key="i">
-      <h1 class="text-2xl ml-1">{{ item.name }}</h1>
-      <TBreadcrumb :list="config.breadcrumb" class="my-4" />
+      <div class="flex content-center items-center">
+        <div class="flex-grow">
+          <h1 class="text-2xl ml-1">{{ item.name }}</h1>
+          <TBreadcrumb :list="config.breadcrumb" class="my-4" />
+        </div>
+        <div class="text-right flex">
+          <TButton class="px-3 mr-2" @click="back()">
+            <TIcon name="fa-angles-left fa-sm mr-2" regular />
+            Voltar
+          </TButton>
+          <TButton @click="save()" class="px-3">
+            <TIcon solid name="fas fa-save" class="mr-2" />
+            Salvar
+          </TButton>
+        </div>
+      </div>
+
       <div class="flex flex-wrap border-t border-b py-4 my-4">
         <div v-for="(field, j) in item.children" :key="j" :class="field.classes + ' p-1'">
           <div class="mb-2 ml-2">
@@ -12,15 +27,25 @@
           <TInput v-model="object[field.name]" :placeholder="field.placeholder" v-if="field.type === 1" />
           <TInput v-model="object[field.name]" :placeholder="field.placeholder" password v-if="field.type === 2" />
           <TCheckbox v-model="object[field.name]" :placeholder="field.placeholder" v-if="field.type === 3" />
-          <TSelect v-model="object[field.name]" :placeholder="field.placeholder" :items="field.database" v-if="field.type === 4" itemValue="id" itemText="name" />
+          <TSelect
+            v-model="object[field.name]"
+            :placeholder="field.placeholder"
+            :items="field.database"
+            v-if="field.type === 4"
+            itemValue="id"
+            itemText="name"
+          />
         </div>
       </div>
-      <div>
-        <TButton @click="save()" class="px-2">
+      <div class="text-right flex">
+        <TButton class="px-3 mr-2" @click="back()">
+          <TIcon name="fa-angles-left fa-sm mr-2" regular />
+          Voltar
+        </TButton>
+        <TButton @click="save()" class="px-3">
           <TIcon solid name="fas fa-save" class="mr-2" />
           Salvar
         </TButton>
-        <TButton @click="back()" class="px-2 ml-2"> Voltar </TButton>
       </div>
     </div>
   </TCard>
@@ -40,12 +65,7 @@ export default {
     loading: false,
     form: [],
     object: {},
-    // items: ['a', 'b', 'c'],
-    items: [
-      { value: 1, text: 'Nome' },
-      { value: 2, text: 'CPF' },
-      { value: 3, text: 'SEXO' },
-    ],
+    items: [],
     test: null,
   }),
   methods: {

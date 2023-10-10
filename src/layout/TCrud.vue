@@ -8,7 +8,7 @@
         </div>
         <div class="w-32 text-right">
           <TButton class="px-3" @click="add()">
-            <TIcon name="fa-plus fa-sm" regular />
+            <TIcon name="fa-plus fa-sm mr-2" regular />
             Adicionar
           </TButton>
         </div>
@@ -25,8 +25,14 @@
                   <div v-for="(sub, j) in config.children" :key="j">
                     <TButton class="px-3 mb-2" @click="subRoute(item.id, sub)" block> {{ sub.name }} </TButton>
                   </div>
-                  <TButton class="px-3 mb-2" @click="edit(item.id)" block> Editar </TButton>
-                  <TButton class="px-3 mb-2" @click="remove(item.id)" block> Excluir </TButton>
+                  <TButton class="px-3 mb-2" @click="edit(item.id)" block>
+                    <TIcon name="fa-pen-to-square fa-sm mr-1" regular />
+                    Editar
+                  </TButton>
+                  <TButton class="px-3" @click="remove(item.id)" block>
+                    <TIcon name="fa-eraser fa-sm mr-1" regular />
+                    Excluir
+                  </TButton>
                 </TCard>
               </div>
             </div>
